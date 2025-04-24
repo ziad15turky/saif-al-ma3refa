@@ -1,83 +1,36 @@
-
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <title>سيف المعرفة - نسخة مبسطة</title>
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f4f4f4;
-      text-align: center;
-      direction: rtl;
-    }
-    .container {
-      margin-top: 50px;
-    }
-    .question-box {
-      background-color: #fff;
-      border: 2px solid #333;
-      padding: 20px;
-      width: 80%;
-      margin: 0 auto 20px;
-      border-radius: 10px;
-    }
-    .answers input {
-      width: 150px;
-      padding: 10px;
-      margin: 10px;
-      font-size: 18px;
-    }
-    .btn {
-      padding: 10px 20px;
-      font-size: 18px;
-      background-color: #337ab7;
-      color: white;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-    .result {
-      font-size: 20px;
-      margin-top: 20px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سيف المعرفة - لعبة دينية</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>لعبة سيف المعرفة - الجولة الأولى</h1>
-    <div class="question-box">
-      <h2 id="question">في أي سنة حدثت معركة بدر؟</h2>
-      <div class="answers">
-        <input type="number" id="answer1" placeholder="إجابة اللاعب 1">
-        <input type="number" id="answer2" placeholder="إجابة اللاعب 2">
-      </div>
-      <button class="btn" onclick="checkAnswer()">تحقق من الإجابة</button>
-      <div class="result" id="result"></div>
+    <div class="game-container">
+        <h1>لعبة سيف المعرفة</h1>
+        <div id="question-container">
+            <p id="question"></p>
+            <div id="choices">
+                <button class="choice-btn" onclick="checkAnswer(0)"></button>
+                <button class="choice-btn" onclick="checkAnswer(1)"></button>
+                <button class="choice-btn" onclick="checkAnswer(2)"></button>
+                <button class="choice-btn" onclick="checkAnswer(3)"></button>
+            </div>
+        </div>
+        <div id="map-container">
+            <p>الخريطة:</p>
+            <div id="map">
+                <div class="map-region" id="region-1" onclick="captureRegion(1)">مكة</div>
+                <div class="map-region" id="region-2" onclick="captureRegion(2)">المدينة</div>
+                <div class="map-region" id="region-3" onclick="captureRegion(3)">بدر</div>
+                <div class="map-region" id="region-4" onclick="captureRegion(4)">أحد</div>
+            </div>
+        </div>
+        <div id="score-container">
+            <p>النقاط: <span id="score">0</span></p>
+        </div>
     </div>
-  </div>
-
-  <script>
-    const correctAnswer = 624;
-
-    function checkAnswer() {
-      const answer1 = parseInt(document.getElementById('answer1').value);
-      const answer2 = parseInt(document.getElementById('answer2').value);
-      const diff1 = Math.abs(correctAnswer - answer1);
-      const diff2 = Math.abs(correctAnswer - answer2);
-
-      let result = "";
-      if (isNaN(answer1) || isNaN(answer2)) {
-        result = "يرجى إدخال أرقام صحيحة.";
-      } else if (diff1 < diff2) {
-        result = "اللاعب 1 أقرب للإجابة الصحيحة!";
-      } else if (diff2 < diff1) {
-        result = "اللاعب 2 أقرب للإجابة الصحيحة!";
-      } else {
-        result = "تعادل! كلا اللاعبين على نفس المسافة.";
-      }
-      document.getElementById('result').innerText = result;
-    }
-  </script>
+    <script src="script.js"></script>
 </body>
 </html>
